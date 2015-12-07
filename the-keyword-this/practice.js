@@ -58,8 +58,8 @@ var car = function (make, model, year) {
     return this.move += 10;
   }
 };
-var prius = new Car('Toyota', 'Prius', 2011);
-var mustang = new Car('Ford', 'Mustang', 2013);
+var prius = new Car('Toyota', 'Prius', 2011);     // constructor function
+var mustang = new Car('Ford', 'Mustang', 2013);   // constructor function
 
 prius.moveCar(); //increments prius' move property by 10. Returns the new move property.
 mustang.moveCar(); //increments mustang' move property by 10. Returns the new move property.
@@ -72,16 +72,17 @@ var getYear = function () {
   return this.year;
 };
 
-//Above you're given the getYear function. Using your prius and mustang objects from above, use the proper syntax that will allow for you to call the getYear function with the prius then the mustang objects being the focal objects. *Don't add getYear as a property on both objects*.
+/*Above you're given the getYear function. 
+Using your prius and mustang objects from above, 
+use the proper syntax that will allow for you to call the getYear function with the prius then the mustang objects being the focal objects. 
+*Don't add getYear as a property on both objects*.*/
 
-//Note(no tests)
-//Code Here
-
-
-//New Problem
+//Code Here. Note(no tests)
+getYear.call(mustang); // The call() method calls a function with a given 'THIS' value and arguments provided individually
 
 
 
+// 7 //
 var myUser = {
   username: 'iliketurtles',
   age: 13,
