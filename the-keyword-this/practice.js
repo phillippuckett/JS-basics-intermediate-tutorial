@@ -42,27 +42,26 @@ var user = {
 console.log(user);
 //Now, invoke the getUsername method and verify you got the username of the object and not anything else.
 
-
-
-
 // 6 //
 // Write the function definitions which will make the following function invocations function properly. //
 
 //Function Invocations Here
-var car = function (make, model, year) {
-  this.make = make,
-  this.model = model,
-  this.year = year,
+var car = function (make, model, year, move) {
+  this.make = make;
+  this.model = model;
+  this.year = year;
   this.move = 0;
   this.moveCar = function () {
-    return this.move += 10;
-  }
+    this.move += 10;
+    return this.move;
+  };
 };
 var prius = new Car('Toyota', 'Prius', 2011);     // constructor function
 var mustang = new Car('Ford', 'Mustang', 2013);   // constructor function
 
 prius.moveCar(); //increments prius' move property by 10. Returns the new move property.
 mustang.moveCar(); //increments mustang' move property by 10. Returns the new move property.
+
 /*Hint, you'll need to write a moveCar function which is added to every object that is being returned from the Car function. 
 You'll also need to use the 'this' keyword properly in order to make sure you're invoking moveCar on the right object (prius vs mustang).*/
 
@@ -78,33 +77,35 @@ use the proper syntax that will allow for you to call the getYear function with 
 *Don't add getYear as a property on both objects*.*/
 
 //Code Here. Note(no tests)
-getYear.call(mustang); // The call() method calls a function with a given 'THIS' value and arguments provided individually
-
-
+getYear.call(mustang); // The CALL() method calls a function with a given 'THIS' value and arguments provided individually
+getYear.call(prius);
 
 // 7 //
-/*Above you're given an object, a function, and a setTimeout invocation.*/
+/*Below you're given an object, a function, and a setTimeout invocation.*/
 var myUser = {
-  username: 'iliketurtles',
-  age: 13,
-  email: 'iliketurtles@gmail.com'
+  username: 'phillippuckett88',
+  age: 27,
+  email: 'phillippuckett88@gmail.com'
 };
 
 var getMyUsername = function () {
   console.log(this.username);
 };
-getMyUsername.apply(myUser); // APPLY
+getMyUsername.bind(myUser); // BIND()
+// getMyUsername.apply(myUser); // APPLY()
 
-setTimeout(getMyUsername, 5000);
-
+// setTimeout(getMyUsername, 5000);
+setTimeout(getMyUsername.call(myUser), 5000);
 /*After 5 seconds, what will the getUsername function return?*/
 
 //Answer Here. Note(no tests)
-undefined
+// undefined
 
 //In the example above, what is the keyword 'THIS' bound to when getUsername runs?
 
 //Answer Here
-getMyUsername
+// undefined
 
 /*Fix the setTimeout invocation so that the user object will be the focal object when getUsername is ran.*/
+
+// setTimeout(getMyUsername.call(user), 5000);
